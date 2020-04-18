@@ -14,7 +14,7 @@ app.listen(port, () => {
 
 app.use(express.static(path.join(__dirname, '/../client/dist')));
 
-
+/////// spotify authorization ////////
 app.get('/login', function(req, res) {
   let scopes = ['playlist-modify-public'];
   let authorizeURL = spotifyApi.createAuthorizeURL(scopes);
@@ -34,3 +34,16 @@ app.get('/callback', (req, res) => {
       res.redirect('/login');
     })
 });
+
+//////////////////////////////////////
+
+
+// get users collection from discogs
+app.get('/api/collection/:user', (req, res) => {
+  let user = req.params.user;
+  // 0 is default for all folder of collection (the public folder)
+  discogs.getCollection(user, 0)
+    .then((collection) => {
+      console.log(collection)
+    })
+})

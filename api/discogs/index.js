@@ -2,13 +2,14 @@ const discogsAuth = require('../../discogsAuth').discogsAuth;
 const Discogs = require('disconnect').Client;
 
 // Authenticate by consumer key and secret
-var dis = new Discogs({
+const dis = new Discogs({
 	consumerKey: discogsAuth.consumerKey, 
 	consumerSecret: discogsAuth.consumerSecret,
 });
 
-let collection = dis.user().collection();
+const collection = dis.user().collection();
+const getCollection = collection.getReleases;
 
-exports.collection = collection;
+exports.getCollection = getCollection;
 
 
