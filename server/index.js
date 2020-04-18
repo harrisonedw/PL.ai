@@ -20,23 +20,17 @@ app.get('/login', function(req, res) {
   let authorizeURL = spotifyApi.createAuthorizeURL(scopes);
 
   res.redirect(authorizeURL);
-
-  // res.redirect('https://accounts.spotify.com/authorize' +
-  //   '?response_type=code' +
-  //   '&client_id=' + spotifyAuth.clientID +
-  //   (scopes ? '&scope=' + encodeURIComponent(scopes) : '') +
-  //   '&redirect_uri=' + encodeURIComponent(redirect_uri));
-  // });
 });
 
 app.get('/callback', (req, res) => {
   let code = res.req.query.code;
   spotifyApi.authorizationCodeGrant(code)
     .then((data) => {
-      console.log('token', data.body.access_token)
+      spotifyApi.setAccessToken(data.body.access_token);
+      res.redirect('/');
     })
     .catch((error) => {
       console.log(error)
+      res.redirect('/login');
     })
-  // res.redirect('/');
 });
