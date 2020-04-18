@@ -6,7 +6,9 @@ const path = require('path');
 const express = require('express');
 const app = express();
 const port = 5000;
-console.log(spotifyApi)
+
+let spotCode = undefined;
+let userObj;
 
 app.listen(port, () => {
   console.log(`listening on port ${port}`);
@@ -23,10 +25,15 @@ app.get('/login', function(req, res) {
 });
 
 app.get('/callback', (req, res) => {
-  let code = res.req.query.code;
-  spotifyApi.authorizationCodeGrant(code)
+  spotCode = res.req.query.code;
+  spotifyApi.authorizationCodeGrant(spotCode)
     .then((data) => {
       spotifyApi.setAccessToken(data.body.access_token);
+      spotifyApi.setRefreshToken(data.body.refresh_token);
+      return spotifyApi.getMe();
+    })
+    .then((data) => {
+      userObj = data.body;
       res.redirect('/');
     })
     .catch((error) => {
@@ -44,6 +51,24 @@ app.get('/api/collection/:user', (req, res) => {
   // 0 is default for all folder of collection (the public folder)
   discogs.getCollection(user, 0)
     .then((collection) => {
-      console.log(collection)
+      console.log(collection);
     })
-})
+});
+
+// create public spotify playlist
+app.get('/api/playlist/create/:name', (req, res) => {
+  // spotifyApi.refreshAccessToken();
+  let name = req.params.name;
+  spotifyApi.authorizationCodeGrant(spotCode)
+    .then((data) => {
+      spotifyApi.setAccessToken(data.body.access_token);
+      
+    })
+    .then((data) => {
+      console.log(data);
+    })
+    .catch((error) => {
+      console.log('Something went wrong!', error);
+    })
+});
+
