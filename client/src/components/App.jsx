@@ -15,18 +15,18 @@ class App extends React.Component {
       discogsUser: '',
       discogsCollection: [],
       stage: 0,
-      playlistExists: 1,
+      playlist: [],
     };
     this.getDiscogsCollection = this.getDiscogsCollection.bind(this);
     this.handleDiscogsInput = this.handleDiscogsInput.bind(this);
     this.handleDiscogsSubmit = this.handleDiscogsSubmit.bind(this);
+    this.addToList = this.addToList.bind(this);
   }
 
   getDiscogsCollection(user) {
     console.log(user)
     $.get(`/api/collection/${user}`)
       .done((data) => {
-        console.log(data.releases)
         this.setState({ discogsCollection: data.releases, stage: 1 })
       })
     }
@@ -40,6 +40,16 @@ class App extends React.Component {
     let user = this.state.discogsUser;
     this.getDiscogsCollection(user);
     event.preventDefault();
+  }
+
+  addToList(albumInfo) {
+    let info = {
+      artist: albumInfo.artists[0].name,
+      title: albumInfo.title
+    }
+    let currentList = this.state.playlist
+    currentList.push(info);
+    this.setState({ playlist: currentList });
   }
 
 
@@ -58,15 +68,10 @@ class App extends React.Component {
       )
     }
     if (this.state.stage === 1) {
-      if (this.state.playlistExists === 1) {
-        let spotComp = <SpotifyComponent />;
-      } else {
-        let spotComp = null;
-      }
       return (
         <div className="main">
-          <DiscogsCollection collection={this.state.discogsCollection}/>
-          <SpotifyComponent />
+          <DiscogsCollection collection={this.state.discogsCollection} addToList={this.addToList}/>
+          <SpotifyComponent list={this.state.playlist}/>
         </div>
       )
     }

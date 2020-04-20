@@ -12,6 +12,9 @@ const AddToListControl = (props) => {
   //// find album on spotify then
   //// return songs in album
   //// give them to spotify component
+  const clickButton = (event) => {
+    props.addToList(props.albumInfo);
+  } 
   
   return (
     <div>
@@ -19,7 +22,7 @@ const AddToListControl = (props) => {
       <div>{props.albumInfo.title}</div>
       <div>{props.albumInfo.year}</div>
       <div>{props.albumInfo.genres[0]}</div>
-      <button>ADD</button>
+      <button onClick={clickButton}>ADD</button>
     </div>
   )
 }

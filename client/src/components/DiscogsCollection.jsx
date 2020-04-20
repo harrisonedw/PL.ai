@@ -33,13 +33,12 @@ class DiscogsCollection extends React.Component {
   render() {
     const collection = this.props.collection;
     const albums = collection.map((album, i) => {
-      {console.log(album)}
       let tooltipId = album.basic_information.title;
       return (
         <div  key={i}>  
           <img data-tip data-for={tooltipId} className="album" src={album.basic_information.cover_image} alt="album art" onClick={this.openModal}/>
           <ReactTooltip id={tooltipId} effect="float" clickable="true" offset="{'top': -10}">
-            <AddToListControl albumInfo={album.basic_information}/>
+            <AddToListControl albumInfo={album.basic_information} addToList={this.props.addToList}/>
           </ ReactTooltip>
         </div>
       )
