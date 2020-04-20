@@ -10,3 +10,18 @@
   flex-wrap: wrap;
   background-color: DodgerBlue;
 }
+
+.TP-modal {
+  width: 550px;
+  left: 240.5px;
+  height: auto;
+  margin: 76px auto;
+  /* position: absolute; */
+  top: 0;
+  padding: 25px;
+  background: #fff;
+  font: 12px/1.4 Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+  color: #333;
+  box-sizing: border-box;
+  z-index: 3;
+}
