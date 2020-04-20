@@ -28,12 +28,15 @@ app.get('/callback', (req, res) => {
   spotCode = res.req.query.code;
   spotifyApi.authorizationCodeGrant(spotCode)
     .then((data) => {
+      // console.log(data.body.access_token)
       spotifyApi.setAccessToken(data.body.access_token);
       spotifyApi.setRefreshToken(data.body.refresh_token);
       return spotifyApi.getMe();
     })
     .then((data) => {
       userObj = data.body;
+      // console.log(userObj)
+      res.send(data.body.id);
       res.redirect('/');
     })
     .catch((error) => {
@@ -59,16 +62,21 @@ app.get('/api/collection/:user', (req, res) => {
 app.get('/api/playlist/create/:name', (req, res) => {
   // spotifyApi.refreshAccessToken();
   let name = req.params.name;
-  spotifyApi.authorizationCodeGrant(spotCode)
+  spotifyApi.createPlaylist(userObj.id, name, { public: true })
     .then((data) => {
-      spotifyApi.setAccessToken(data.body.access_token);
-      
-    })
-    .then((data) => {
-      console.log(data);
+      console.log('Playlist Created ', data.name);
+      res.send(data.id);
+      res.redirect('/');
     })
     .catch((error) => {
       console.log('Something went wrong!', error);
     })
 });
 
+// add songs to playlist
+app.get('/api/playlist/add', (req, res) => {
+  let list = req.params.list;
+  for (let i = 0; i < list.length; i++) {
+
+  }
+})
