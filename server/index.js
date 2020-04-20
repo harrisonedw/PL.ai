@@ -14,7 +14,7 @@ app.listen(port, () => {
   console.log(`listening on port ${port}`);
 });
 
-app.use(express.static(path.join(__dirname, '/../client/dist')));
+app.use(express.static(path.join(__dirname, '/../client/dist'))); 
 
 /////// spotify authorization ////////
 app.get('/login', function(req, res) {
@@ -50,11 +50,12 @@ app.get('/callback', (req, res) => {
 
 // get users collection from discogs
 app.get('/api/collection/:user', (req, res) => {
+  console.log('collection function')
   let user = req.params.user;
   // 0 is default for all folder of collection (the public folder)
   discogs.getCollection(user, 0)
     .then((collection) => {
-      console.log(collection);
+      res.send(collection);
     })
 });
 
