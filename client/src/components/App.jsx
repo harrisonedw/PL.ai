@@ -3,7 +3,7 @@ import $ from 'jquery';
 
 import DiscogsCollection from './DiscogsCollection.jsx'
 
-// import CSSModules from 'react-css-modules';
+import CSSModules from 'react-css-modules';
 // import styles from './App.css';
 
 class App extends React.Component {
