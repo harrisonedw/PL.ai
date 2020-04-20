@@ -38,7 +38,7 @@ class DiscogsCollection extends React.Component {
       return (
         <div  key={i}>  
           <img data-tip data-for={tooltipId} className="album" src={album.basic_information.cover_image} alt="album art" onClick={this.openModal}/>
-          <ReactTooltip id={tooltipId}>
+          <ReactTooltip id={tooltipId} effect="float" clickable="true" offset="{'top': -10}">
             <AddToListControl albumInfo={album.basic_information}/>
           </ ReactTooltip>
         </div>
