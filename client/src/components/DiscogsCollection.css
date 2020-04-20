@@ -5,13 +5,16 @@
 }
 
 .collection {
-  width: 1240;
+  max-width: 600px;
+  max-height: 800px;
   display: flex;
   flex-wrap: wrap;
-  background-color: DodgerBlue;
+  margin: 20px;
+  overflow: auto;
+  /* background-color: DodgerBlue; */
 }
 
-.TP-modal {
+.albumModal {
   width: 550px;
   left: 240.5px;
   height: auto;

@@ -1,8 +1,11 @@
 import React from 'react';
 import ReactModal from 'react-modal';
+import ReactTooltip from 'react-tooltip'
 
 import CSSModules from 'react-css-modules';
 import styles from './DiscogsCollection.css';
+
+import AddToListControl from './AddToListControl.jsx'
 
 
 class DiscogsCollection extends React.Component {
@@ -31,23 +34,21 @@ class DiscogsCollection extends React.Component {
     const collection = this.props.collection;
     const albums = collection.map((album, i) => {
       {console.log(album)}
-      return (<div  key={i}>  
-        <img className="album" src={album.basic_information.cover_image} alt="album art" onClick={this.openModal}/>
-      </div>)
+      let tooltipId = album.basic_information.title;
+      return (
+        <div  key={i}>  
+          <img data-tip data-for={tooltipId} className="album" src={album.basic_information.cover_image} alt="album art" onClick={this.openModal}/>
+          <ReactTooltip id={tooltipId}>
+            <AddToListControl albumInfo={album.basic_information}/>
+          </ ReactTooltip>
+        </div>
+      )
     })
     return (
       <div>
         <div className="collection">
           {albums}
         </div>
-        <ReactModal
-          className="TP-modal"
-          isOpen={this.state.showModal}
-        >
-          <div onClick={this.closeModal} className="TP-modalContent">
-            <p>its a modal</p>
-          </div>
-        </ReactModal>
       </div>
     )
   }

@@ -2,8 +2,10 @@ import React from 'react';
 import $ from 'jquery';
 
 import DiscogsCollection from './DiscogsCollection.jsx'
+import SpotifyComponent from './SpotifyComponent.jsx'
 
 import CSSModules from 'react-css-modules';
+import styles from './App.css';
 // import styles from './App.css';
 
 class App extends React.Component {
@@ -12,7 +14,8 @@ class App extends React.Component {
     this.state = {
       discogsUser: '',
       discogsCollection: [],
-      stage: 0
+      stage: 0,
+      playlistExists: 1,
     };
     this.getDiscogsCollection = this.getDiscogsCollection.bind(this);
     this.handleDiscogsInput = this.handleDiscogsInput.bind(this);
@@ -55,9 +58,15 @@ class App extends React.Component {
       )
     }
     if (this.state.stage === 1) {
+      if (this.state.playlistExists === 1) {
+        let spotComp = <SpotifyComponent />;
+      } else {
+        let spotComp = null;
+      }
       return (
-        <div>
+        <div className="main">
           <DiscogsCollection collection={this.state.discogsCollection}/>
+          <SpotifyComponent />
         </div>
       )
     }
