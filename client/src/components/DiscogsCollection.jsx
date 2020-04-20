@@ -17,15 +17,14 @@ class DiscogsCollection extends React.Component {
   render() {
     const collection = this.props.collection;
     const albums = collection.map((album, i) => {
+      {console.log(album)}
       return (<div  key={i}>
         <img className="album" src={album.basic_information.cover_image} alt="album art"/>
       </div>)
     })
     return (
-      <div>
-        <ul>
+      <div className="collection">
         {albums}
-        </ul>
       </div>
     )
   }

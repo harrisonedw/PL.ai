@@ -2,5 +2,11 @@
   height: auto; 
   width: auto;
   max-width: 100px;
-  
+}
+
+.collection {
+  width: 1240;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: DodgerBlue;
 }
