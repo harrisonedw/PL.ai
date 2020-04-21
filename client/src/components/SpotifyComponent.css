@@ -1,12 +1,30 @@
 .container {
   width: 600px;
+  margin: 20px;
   height: 800px;
   border: 5px;
   overflow: auto;
   background-color: black;
   color: aliceblue;
+  position: relative;
 }
 
-.listItem {
+.playlistItem {
   color: aliceblue;
+  /* display: inline-flex; */
+  height: 64px;
+  margin: 20px;
+}
+
+.text {
+  text-align: right;
+}
+
+.image {
+  float: left;
+}
+
+.bottomBanner {
+  position: absolute;
+  bottom: 10px;
 }

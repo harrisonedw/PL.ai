@@ -79,7 +79,7 @@ app.post('/api/playlist/create/:name', (req, res) => {
   }
   spotifyApi.createPlaylist(userObj.id, name, { public: true })
     .then((data) => {
-      console.log('Playlist Created ', data);
+      // console.log('Playlist Created ', data);
       return spotifyApi.addTracksToPlaylist(data.body.id, songs);
     })
     .then((data) => {
@@ -100,12 +100,12 @@ app.post('/api/playlist/add', (req, res) => {
 
 // find album on spotify
 app.get('/api/search/:artist/:album', (req, res) => {
-  console.log('hello there')
+  // console.log('hello there')
   let artist = req.params.artist;
   let album = req.params.album;
   spotifyApi.searchArtists(artist)
     .then((data) => {
-      console.log(data.body.artists.items[0].id);
+      // console.log(data.body.artists.items[0].id);
       let artistId = data.body.artists.items[0].id;
       return spotifyApi.getArtistAlbums(artistId);
     })
@@ -113,17 +113,17 @@ app.get('/api/search/:artist/:album', (req, res) => {
       // console.log(data.body)
       let albums = data.body.items;
       for (let i = 0; i < albums.length; i++) {
-        if (albums[i].name === album) {
+        if (albums[i].name.includes(album)) {
           // res.send(albums[i]);
           let album = albums[i];
           spotifyApi.getAlbumTracks(album.id)
             .then((songs) => {
-              console.log(songs.body.items)
+              // console.log(songs.body.items)
               let albumObj = {
                 album: album,
                 songs: songs.body.items,
               }
-              console.log(albumObj)
+              // console.log(albumObj)
               res.send(albumObj);
             })
         }
