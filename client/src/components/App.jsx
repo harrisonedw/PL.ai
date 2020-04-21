@@ -1,9 +1,10 @@
 import React from 'react';
 import $ from 'jquery';
 import axios from 'axios';
-
-import DiscogsCollection from './DiscogsCollection.jsx'
-import SpotifyComponent from './SpotifyComponent.jsx'
+import ReactModal from 'react-modal';
+import DiscogsCollection from './DiscogsCollection.jsx';
+import SpotifyComponent from './SpotifyComponent.jsx';
+import PlaylistCreated from './PlaylistCreated.jsx';
 
 import CSSModules from 'react-css-modules';
 import styles from './App.css';
@@ -17,12 +18,23 @@ class App extends React.Component {
       discogsCollection: [],
       stage: 0,
       playlist: [],
+      showModal: false,
     };
     this.getDiscogsCollection = this.getDiscogsCollection.bind(this);
     this.handleDiscogsInput = this.handleDiscogsInput.bind(this);
     this.handleDiscogsSubmit = this.handleDiscogsSubmit.bind(this);
     this.addToList = this.addToList.bind(this);
     this.createSpotifyPlaylist = this.createSpotifyPlaylist.bind(this);
+    this.playlistDone = this.playlistDone.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+  }
+
+  playlistDone() {
+    this.setState({ showModal: true });
+  }
+
+  closeModal() {
+    this.setState({ showModal: false });
   }
 
   getDiscogsCollection(user) {
@@ -44,8 +56,8 @@ class App extends React.Component {
     console.log('create playlist clicked')
     axios.post(`/api/playlist/create/${name}`, this.state.playlist)
       .then(() => {
-        console.log('created playlist');
-        
+        console.log('created playlist');  
+        this.playlistDone();
       })
       .catch(() => {
         console.log('cant create playlist');
@@ -118,7 +130,15 @@ class App extends React.Component {
               <p></p>
               <img className="discogsLogo" src="https://plaimvp.s3-us-west-1.amazonaws.com/discogs+logo+white.png" alt=""/>
               <img className="spotifyLogo" src="https://plaimvp.s3-us-west-1.amazonaws.com/Spotify_Logo_CMYK_Green.png" alt=""/>
+          </div>
+          <ReactModal
+            className="modal"
+            isOpen={this.state.showModal}
+          >
+            <div onClick={this.closeModal} className="modalContent">
+              <PlaylistCreated />
             </div>
+        </ReactModal>
         </div>
       )
     }

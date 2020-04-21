@@ -30,7 +30,9 @@
   background-color: rgb(54, 54, 54);
   color: aliceblue;
   position: relative;
-  font-family: Impact, Charcoal, sans-serif;;
+  font-family: Impact, Charcoal, sans-serif;
+  font-size: 24px;
+
 }
 
 .discogsInput {
@@ -38,7 +40,6 @@
   display: block;
   left: 175px;
   right: auto;
-  top: 75px;
   margin: 25px;
   position: absolute;
   
@@ -87,4 +88,12 @@
   height: 30px;
   position: absolute;
   right: 50px
+}
+
+.modalContent {
+  font-family: Impact, Charcoal, sans-serif;
+  font-size: 36px;
+  position: fixed;
+  left: 700px;
+  top: 200px;
 }

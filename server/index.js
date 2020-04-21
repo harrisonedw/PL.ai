@@ -84,6 +84,7 @@ app.post('/api/playlist/create/:name', (req, res) => {
     })
     .then((data) => {
       console.log('songs added to playlist!')
+      res.send(data);
     })
     .catch((error) => {
       console.log('Something went wrong!', error);
