@@ -81,8 +81,8 @@ class App extends React.Component {
   render() {
     if (this.state.stage === 0) {
       return (
-        <div>
-          <button onClick={this.connectToSpotify}>CONNECT TO SPOTIFY</button>
+        <div className="landing">
+          {/* <button onClick={this.connectToSpotify}>CONNECT TO SPOTIFY</button> */}
           <form>
             <label>
               Enter Discogs User:

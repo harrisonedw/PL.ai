@@ -7,6 +7,7 @@
   background-color: black;
   color: aliceblue;
   position: relative;
+  font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
 }
 
 .playlistItem {
@@ -27,4 +28,5 @@
 .bottomBanner {
   position: absolute;
   bottom: 10px;
+  font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
 }

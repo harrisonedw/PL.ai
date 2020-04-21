@@ -55,7 +55,7 @@ const SpotifyComponent = (props) => {
   }
 
   return (
-    <div className="container">empty</div>
+    <div className="container">add songs to playlist</div>
   )
 };
 

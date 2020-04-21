@@ -3,4 +3,17 @@
   display: flex;
   flex-wrap: wrap;
   margin: 20px;
+  font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+}
+
+.landing {
+  width: 600px;
+  margin: 20px;
+  height: 800px;
+  border: 5px;
+  overflow: auto;
+  background-color: black;
+  color: aliceblue;
+  position: relative;
+  font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
 }
