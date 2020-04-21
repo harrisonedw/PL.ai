@@ -35,9 +35,9 @@ const SpotifyComponent = (props) => {
       console.log('list album', album)
       return (
         <div className="playlistItem" key={i}>
-          <img src={album.images[2].url} />
-          <div className="listItem">{album.name}</div>
-          <div>{album.artists[0].name}</div>
+          <img src={album.album.images[2].url} />
+          <div className="listItem">{album.album.name}</div>
+          <div>{album.album.artists[0].name}</div>
         </div>
       )
     })

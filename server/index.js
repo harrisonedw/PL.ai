@@ -17,6 +17,9 @@ app.listen(port, () => {
   console.log(`listening on port ${port}`);
 });
 
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
 app.use(express.static(path.join(__dirname, '/../client/dist'))); 
 app.use(cors());
 
@@ -66,11 +69,21 @@ app.get('/api/collection/:user', (req, res) => {
 app.post('/api/playlist/create/:name', (req, res) => {
   // spotifyApi.refreshAccessToken();
   let name = req.params.name;
+  let albums = req.body;
+  let songs = [];
+  for (let p = 0; p < albums.length; p++) {
+    for (let t = 0; t < albums[p].songs.length; t++) {
+      let songIdStr = 'spotify:track:' + albums[p].songs[t].id
+      songs.push(songIdStr);
+    }
+  }
   spotifyApi.createPlaylist(userObj.id, name, { public: true })
     .then((data) => {
-      console.log('Playlist Created ', data.name);
-      res.send(data.id);
-      res.redirect('/');
+      console.log('Playlist Created ', data);
+      return spotifyApi.addTracksToPlaylist(data.body.id, songs);
+    })
+    .then((data) => {
+      console.log('songs added to playlist!')
     })
     .catch((error) => {
       console.log('Something went wrong!', error);
@@ -101,7 +114,18 @@ app.get('/api/search/:artist/:album', (req, res) => {
       let albums = data.body.items;
       for (let i = 0; i < albums.length; i++) {
         if (albums[i].name === album) {
-          res.send(albums[i]);
+          // res.send(albums[i]);
+          let album = albums[i];
+          spotifyApi.getAlbumTracks(album.id)
+            .then((songs) => {
+              console.log(songs.body.items)
+              let albumObj = {
+                album: album,
+                songs: songs.body.items,
+              }
+              console.log(albumObj)
+              res.send(albumObj);
+            })
         }
       }
     })

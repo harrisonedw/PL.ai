@@ -42,9 +42,10 @@ class App extends React.Component {
   
   createSpotifyPlaylist(name) {
     console.log('create playlist clicked')
-    axios.post(`/api/playlist/create/${name}`)
+    axios.post(`/api/playlist/create/${name}`, this.state.playlist)
       .then(() => {
         console.log('created playlist');
+        
       })
       .catch(() => {
         console.log('cant create playlist');
