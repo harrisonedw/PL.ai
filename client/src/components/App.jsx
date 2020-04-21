@@ -1,5 +1,6 @@
 import React from 'react';
 import $ from 'jquery';
+import axios from 'axios';
 
 import DiscogsCollection from './DiscogsCollection.jsx'
 import SpotifyComponent from './SpotifyComponent.jsx'
@@ -21,6 +22,7 @@ class App extends React.Component {
     this.handleDiscogsInput = this.handleDiscogsInput.bind(this);
     this.handleDiscogsSubmit = this.handleDiscogsSubmit.bind(this);
     this.addToList = this.addToList.bind(this);
+    this.createSpotifyPlaylist = this.createSpotifyPlaylist.bind(this);
   }
 
   getDiscogsCollection(user) {
@@ -30,7 +32,25 @@ class App extends React.Component {
         this.setState({ discogsCollection: data.releases, stage: 1 })
       })
     }
-    
+  
+  connectToSpotify() {
+    axios.get('/login')
+      .then((data) => {
+        console.log('connected to spotify')
+      })
+  }
+  
+  createSpotifyPlaylist(name) {
+    console.log('create playlist clicked')
+    axios.post(`/api/playlist/create/${name}`)
+      .then(() => {
+        console.log('created playlist');
+      })
+      .catch(() => {
+        console.log('cant create playlist');
+      })
+  }
+
   handleDiscogsInput(event) {
     this.setState({ discogsUser: event.target.value });
   }
@@ -57,6 +77,7 @@ class App extends React.Component {
     if (this.state.stage === 0) {
       return (
         <div>
+          <button onClick={this.connectToSpotify}>CONNECT TO SPOTIFY</button>
           <form>
             <label>
               Enter Discogs User:
@@ -71,7 +92,7 @@ class App extends React.Component {
       return (
         <div className="main">
           <DiscogsCollection collection={this.state.discogsCollection} addToList={this.addToList}/>
-          <SpotifyComponent list={this.state.playlist}/>
+          <SpotifyComponent list={this.state.playlist} createPlaylist={this.createSpotifyPlaylist}/>
         </div>
       )
     }

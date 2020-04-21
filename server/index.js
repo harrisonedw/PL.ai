@@ -4,17 +4,21 @@ const spotifyApi = require('../api/spotify').spotifyApi;
 // const redirect_uri = 'http://localhost:5000/callback/';
 const path = require('path');
 const express = require('express');
+const cors = require('cors');
 const app = express();
 const port = 5000;
 
 let spotCode = undefined;
 let userObj;
 
+
+
 app.listen(port, () => {
   console.log(`listening on port ${port}`);
 });
 
 app.use(express.static(path.join(__dirname, '/../client/dist'))); 
+app.use(cors());
 
 /////// spotify authorization ////////
 app.get('/login', function(req, res) {
@@ -36,7 +40,6 @@ app.get('/callback', (req, res) => {
     .then((data) => {
       userObj = data.body;
       // console.log(userObj)
-      res.send(data.body.id);
       res.redirect('/');
     })
     .catch((error) => {
@@ -60,7 +63,7 @@ app.get('/api/collection/:user', (req, res) => {
 });
 
 // create public spotify playlist
-app.get('/api/playlist/create/:name', (req, res) => {
+app.post('/api/playlist/create/:name', (req, res) => {
   // spotifyApi.refreshAccessToken();
   let name = req.params.name;
   spotifyApi.createPlaylist(userObj.id, name, { public: true })
@@ -75,7 +78,7 @@ app.get('/api/playlist/create/:name', (req, res) => {
 });
 
 // add songs to playlist
-app.get('/api/playlist/add', (req, res) => {
+app.post('/api/playlist/add', (req, res) => {
   let list = req.params.list;
   for (let i = 0; i < list.length; i++) {
 

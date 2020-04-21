@@ -25,6 +25,11 @@ import styles from './SpotifyComponent.css';
 
 const SpotifyComponent = (props) => {
 
+
+  const clickCreatePlaylist = () => {
+    props.createPlaylist('testList2')
+  }
+  
   if (props.list.length) {
     let playlist = props.list.map((album, i) => {
       return (
@@ -34,6 +39,7 @@ const SpotifyComponent = (props) => {
 
     return (
       <div className="container">
+        <button onClick={clickCreatePlaylist}>CREATE PLAYLIST</button>
         {playlist}
       </div>
     )
