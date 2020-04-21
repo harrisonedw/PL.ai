@@ -84,3 +84,28 @@ app.post('/api/playlist/add', (req, res) => {
 
   }
 })
+
+// find album on spotify
+app.get('/api/search/:artist/:album', (req, res) => {
+  console.log('hello there')
+  let artist = req.params.artist;
+  let album = req.params.album;
+  spotifyApi.searchArtists(artist)
+    .then((data) => {
+      console.log(data.body.artists.items[0].id);
+      let artistId = data.body.artists.items[0].id;
+      return spotifyApi.getArtistAlbums(artistId);
+    })
+    .then((data) => {
+      console.log(data.body)
+      let albums = data.body.items;
+      for (let i = 0; i < albums.length; i++) {
+        if (albums[i].name === album) {
+          res.send(albums[i]);
+        }
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+})

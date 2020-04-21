@@ -67,9 +67,13 @@ class App extends React.Component {
       artist: albumInfo.artists[0].name,
       title: albumInfo.title
     }
-    let currentList = this.state.playlist
-    currentList.push(info);
-    this.setState({ playlist: currentList });
+    axios.get(`api/search/${info.artist}/${info.title}`)
+      .then((data) => {
+        console.log('album', data)
+      })
+    // let currentList = this.state.playlist
+    // currentList.push(info);
+    // this.setState({ playlist: currentList });
   }
 
 
