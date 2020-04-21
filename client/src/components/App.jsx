@@ -70,10 +70,10 @@ class App extends React.Component {
     axios.get(`api/search/${info.artist}/${info.title}`)
       .then((data) => {
         console.log('album', data)
+        let currentList = this.state.playlist
+        currentList.push(data.data);
+        this.setState({ playlist: currentList });
       })
-    // let currentList = this.state.playlist
-    // currentList.push(info);
-    // this.setState({ playlist: currentList });
   }
 
 

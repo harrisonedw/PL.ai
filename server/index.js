@@ -97,7 +97,7 @@ app.get('/api/search/:artist/:album', (req, res) => {
       return spotifyApi.getArtistAlbums(artistId);
     })
     .then((data) => {
-      console.log(data.body)
+      // console.log(data.body)
       let albums = data.body.items;
       for (let i = 0; i < albums.length; i++) {
         if (albums[i].name === album) {

@@ -29,11 +29,16 @@ const SpotifyComponent = (props) => {
   const clickCreatePlaylist = () => {
     props.createPlaylist('testList2')
   }
-  
+
   if (props.list.length) {
     let playlist = props.list.map((album, i) => {
+      console.log('list album', album)
       return (
-        <div key={i} className="listItem">{album.title}</div>
+        <div className="playlistItem" key={i}>
+          <img src={album.images[2].url} />
+          <div className="listItem">{album.name}</div>
+          <div>{album.artists[0].name}</div>
+        </div>
       )
     })
 
