@@ -22,7 +22,7 @@ const AddToListControl = (props) => {
       <div>{props.albumInfo.title}</div>
       <div>{props.albumInfo.year}</div>
       <div>{props.albumInfo.genres[0]}</div>
-      <button onClick={clickButton}>ADD</button>
+      <button className="button" onClick={clickButton}>ADD</button>
     </div>
   )
 }

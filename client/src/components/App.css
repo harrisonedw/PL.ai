@@ -1,11 +1,22 @@
 .main {
-  /* max-width: 1400px; */
   margin-left: auto;
   margin-right: auto;
   display: flex;
   flex-wrap: wrap;
   margin: 20px;
-  font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+  font-family: Impact, Charcoal, sans-serif;;
+}
+
+.topBanner {
+  color:rgb(54, 54, 54);;
+  border-bottom:  rgb(54, 54, 54);
+  border-width: 5px;
+  font-size: 75px;
+  font-weight: bolder;
+  height: 100px;
+  margin-left: 40px;
+  width: 100%;
+  font-family: Impact, Charcoal, sans-serif;
 }
 
 .landing {
@@ -16,15 +27,64 @@
   margin-left: auto;
   margin-right: auto;
   overflow: auto;
-  background-color: black;
+  background-color: rgb(54, 54, 54);
   color: aliceblue;
   position: relative;
-  font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+  font-family: Impact, Charcoal, sans-serif;;
 }
 
 .discogsInput {
-  margin-left: auto;
-  margin-right: auto;
+  width: 200px;
   display: block;
+  left: 175px;
+  right: auto;
+  top: 75px;
+  margin: 25px;
+  position: absolute;
   
+}
+
+.inputForm {
+  width: 100%;
+  background-color: aliceblue;
+  height: 40px;
+  font-size: 24px;
+  font-family: Impact, Charcoal, sans-serif;
+}
+
+.button {
+  margin: 10px auto;
+    background-color: aliceblue;; /* Green */
+    border: none;
+    color: rgb(54, 54, 54);
+    /* padding: 15px 32px; */
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    font-size: 16px;
+    height: 30px;
+    font-family: Impact, Charcoal, sans-serif;
+}
+
+.bottomBanner {
+  background-color: black;
+  height: 50px;
+  z-index: 1000;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  font-family: Impact, Charcoal, sans-serif;;
+}
+
+.discogsLogo {
+  height: 30px;
+  position: absolute;
+  left: 50px
+}
+
+.spotifyLogo {
+  height: 30px;
+  position: absolute;
+  right: 50px
 }

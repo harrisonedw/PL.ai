@@ -81,25 +81,44 @@ class App extends React.Component {
   render() {
     if (this.state.stage === 0) {
       return (
-        <div className="landing">
-          {/* <button onClick={this.connectToSpotify}>CONNECT TO SPOTIFY</button> */}
-          <div className="discogsInput">
-            <form>
-              <label>
-                Enter Discogs User:
-                <input type="text" name="user" onChange={this.handleDiscogsInput} />
-              </label>
-              <input type="submit" value="Submit" onClick={this.handleDiscogsSubmit}/>
-            </form>
+        <div>
+          <div className="topBanner">PL.ai</div>
+          <div className="landing">
+            <p>Welcome to PL.ai !!</p>
+            <p>Enter a Discogs user below and see their collection!</p>
+            {/* <button onClick={this.connectToSpotify}>CONNECT TO SPOTIFY</button> */}
+            <div className="discogsInput">
+              <form>
+                <label>
+                  <input className="inputForm" type="text" name="user" onChange={this.handleDiscogsInput} />
+                </label>
+                <input className="button" type="submit" value="Submit" onClick={this.handleDiscogsSubmit}/>
+              </form>
+            </div>
           </div>
+            <div className="bottomBanner">
+              <p></p>
+              <img className="discogsLogo" src="https://plaimvp.s3-us-west-1.amazonaws.com/discogs+logo+white.png" alt=""/>
+              <img className="spotifyLogo" src="https://plaimvp.s3-us-west-1.amazonaws.com/Spotify_Logo_CMYK_Green.png" alt=""/>
+
+            </div>
         </div>
       )
     }
     if (this.state.stage === 1) {
       return (
-        <div className="main">
-          <DiscogsCollection collection={this.state.discogsCollection} addToList={this.addToList}/>
-          <SpotifyComponent list={this.state.playlist} createPlaylist={this.createSpotifyPlaylist}/>
+        <div>
+          <div className="topBanner">PL.ai</div>
+
+          <div className="main">
+            <DiscogsCollection collection={this.state.discogsCollection} addToList={this.addToList}/>
+            <SpotifyComponent list={this.state.playlist} createPlaylist={this.createSpotifyPlaylist}/>
+          </div>
+          <div className="bottomBanner">
+              <p></p>
+              <img className="discogsLogo" src="https://plaimvp.s3-us-west-1.amazonaws.com/discogs+logo+white.png" alt=""/>
+              <img className="spotifyLogo" src="https://plaimvp.s3-us-west-1.amazonaws.com/Spotify_Logo_CMYK_Green.png" alt=""/>
+            </div>
         </div>
       )
     }

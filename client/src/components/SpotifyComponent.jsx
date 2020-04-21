@@ -27,7 +27,7 @@ const SpotifyComponent = (props) => {
 
 
   const clickCreatePlaylist = () => {
-    props.createPlaylist('testList2')
+    props.createPlaylist('P L . a i')
   }
 
   if (props.list.length) {
@@ -55,7 +55,14 @@ const SpotifyComponent = (props) => {
   }
 
   return (
-    <div className="container">add songs to playlist</div>
+    <div className="container">
+      <div className="spotifyLanding">
+        <p>Select Albums</p>
+        <p>from collection to add to your</p>
+        <p>playlist</p>
+      </div>
+      
+    </div>
   )
 };
 

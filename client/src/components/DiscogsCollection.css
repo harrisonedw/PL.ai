@@ -6,11 +6,12 @@
 
 .collection {
   max-width: 600px;
-  max-height: 800px;
+  max-height: 750px;
   display: flex;
   flex-wrap: wrap;
   margin: 20px;
   overflow: auto;
+  /* position: relative; */
   /* background-color: DodgerBlue; */
 }
 
@@ -28,4 +29,15 @@
   box-sizing: border-box;
   z-index: 3;
   
+}
+
+.bottomBanner {
+  background-color: black;
+  height: 50px;
+  z-index: 1000;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
 }
