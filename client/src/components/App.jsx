@@ -83,13 +83,15 @@ class App extends React.Component {
       return (
         <div className="landing">
           {/* <button onClick={this.connectToSpotify}>CONNECT TO SPOTIFY</button> */}
-          <form>
-            <label>
-              Enter Discogs User:
-              <input type="text" name="user" onChange={this.handleDiscogsInput} />
-            </label>
-            <input type="submit" value="Submit" onClick={this.handleDiscogsSubmit}/>
-          </form>
+          <div className="discogsInput">
+            <form>
+              <label>
+                Enter Discogs User:
+                <input type="text" name="user" onChange={this.handleDiscogsInput} />
+              </label>
+              <input type="submit" value="Submit" onClick={this.handleDiscogsSubmit}/>
+            </form>
+          </div>
         </div>
       )
     }

@@ -1,5 +1,7 @@
 .main {
-  max-width: 1400px;
+  /* max-width: 1400px; */
+  margin-left: auto;
+  margin-right: auto;
   display: flex;
   flex-wrap: wrap;
   margin: 20px;
@@ -11,9 +13,18 @@
   margin: 20px;
   height: 800px;
   border: 5px;
+  margin-left: auto;
+  margin-right: auto;
   overflow: auto;
   background-color: black;
   color: aliceblue;
   position: relative;
   font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+}
+
+.discogsInput {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  
 }
